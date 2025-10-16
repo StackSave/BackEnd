@@ -2,7 +2,6 @@ import { Router } from 'express';
 import {
   getAllProtocols,
   getProtocolByName,
-  getProtocolHistory,
   getTopProtocols,
   getProtocolsByCategory,
   getProtocolCategories
@@ -71,20 +70,6 @@ router.get('/:name', async (req, res) => {
   } catch (error) {
     logger.error('Error fetching protocol:', error);
     res.status(500).json({ error: 'Failed to fetch protocol' });
-  }
-});
-
-// Get protocol APY history
-router.get('/:name/history', async (req, res) => {
-  try {
-    const { name } = req.params;
-    const days = parseInt(req.query.days as string) || 7;
-
-    const history = await getProtocolHistory(name, days);
-    res.json(history);
-  } catch (error) {
-    logger.error('Error fetching protocol history:', error);
-    res.status(500).json({ error: 'Failed to fetch protocol history' });
   }
 });
 

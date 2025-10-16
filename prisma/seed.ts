@@ -14,8 +14,9 @@ async function main() {
       displayName: 'Aave V3',
       description: 'Leading decentralized lending protocol',
       category: 'Lending',
-      apy: 5.8,
-      tvl: 5000000,
+      logo: 'https://s2.coinmarketcap.com/static/img/coins/64x64/7278.png',
+      apy: 3.2,
+      tvl: 11500000000,
       isActive: true
     }
   });
@@ -28,8 +29,9 @@ async function main() {
       displayName: 'Moonwell',
       description: 'Open lending and borrowing protocol',
       category: 'Lending',
-      apy: 6.5,
-      tvl: 8000000,
+      logo: 'https://s2.coinmarketcap.com/static/img/coins/64x64/26498.png',
+      apy: 4.8,
+      tvl: 245000000,
       isActive: true
     }
   });
@@ -42,8 +44,9 @@ async function main() {
       displayName: 'Aerodrome',
       description: 'Next-generation AMM on Base',
       category: 'DEX',
-      apy: 8.5,
-      tvl: 12000000,
+      logo: 'https://s2.coinmarketcap.com/static/img/coins/64x64/28583.png',
+      apy: 12.5,
+      tvl: 850000000,
       isActive: true
     }
   });
@@ -56,8 +59,9 @@ async function main() {
       displayName: 'Seamless Protocol',
       description: 'Integrated DeFi protocol for Base',
       category: 'Yield Optimizer',
-      apy: 6.0,
-      tvl: 7500000,
+      logo: 'https://s2.coinmarketcap.com/static/img/coins/64x64/29636.png',
+      apy: 5.1,
+      tvl: 180000000,
       isActive: true
     }
   });
@@ -72,14 +76,14 @@ async function main() {
       name: 'kaito-idrx',
       displayName: 'KAITO/IDRX',
       description: 'High-growth AI token paired with IDRX',
-      apyCurrent: 15.2,
+      apyCurrent: 24.3,
       riskLevel: 'Higher',
       lockPeriod: 30,
       minDeposit: 500,
       category: 'Growth',
       isFeatured: false,
       isHot: true,
-      tvl: 2500000
+      tvl: 1200000
     }
   });
 
@@ -90,14 +94,14 @@ async function main() {
       name: 'morph-idrx',
       displayName: 'MORPH/IDRX',
       description: 'Layer 2 infrastructure token paired with IDRX',
-      apyCurrent: 11.5,
+      apyCurrent: 18.7,
       riskLevel: 'Medium',
       lockPeriod: 7,
       minDeposit: 200,
       category: 'Balanced',
       isFeatured: false,
       isHot: true,
-      tvl: 1800000
+      tvl: 850000
     }
   });
 
@@ -108,14 +112,14 @@ async function main() {
       name: 'eth-idrx',
       displayName: 'ETH/IDRX',
       description: 'Ethereum paired with IDRX for stable returns',
-      apyCurrent: 8.3,
+      apyCurrent: 5.4,
       riskLevel: 'Low',
       lockPeriod: 0,
       minDeposit: 100,
       category: 'Conservative',
       isFeatured: true,
       isHot: false,
-      tvl: 5000000
+      tvl: 15800000
     }
   });
 
@@ -126,14 +130,14 @@ async function main() {
       name: 'usdc-idrx',
       displayName: 'USDC/IDRX',
       description: 'Stablecoin paired with IDRX for maximum stability',
-      apyCurrent: 6.8,
+      apyCurrent: 4.2,
       riskLevel: 'Low',
       lockPeriod: 0,
       minDeposit: 50,
       category: 'Stable',
       isFeatured: true,
       isHot: false,
-      tvl: 8500000
+      tvl: 28500000
     }
   });
 
@@ -144,14 +148,14 @@ async function main() {
       name: 'base-idrx',
       displayName: 'BASE/IDRX',
       description: 'Base ecosystem token paired with IDRX',
-      apyCurrent: 18.5,
+      apyCurrent: 32.1,
       riskLevel: 'Higher',
       lockPeriod: 30,
       minDeposit: 500,
       category: 'Aggressive',
       isFeatured: true,
       isHot: true,
-      tvl: 3200000
+      tvl: 2800000
     }
   });
 
@@ -162,14 +166,14 @@ async function main() {
       name: 'link-idrx',
       displayName: 'LINK/IDRX',
       description: 'Chainlink oracle token paired with IDRX',
-      apyCurrent: 12.1,
+      apyCurrent: 8.9,
       riskLevel: 'Medium',
       lockPeriod: 7,
       minDeposit: 200,
       category: 'Balanced',
       isFeatured: false,
       isHot: false,
-      tvl: 2100000
+      tvl: 5400000
     }
   });
 
@@ -180,14 +184,14 @@ async function main() {
       name: 'arb-idrx',
       displayName: 'ARB/IDRX',
       description: 'Arbitrum token paired with IDRX',
-      apyCurrent: 16.7,
-      riskLevel: 'Higher',
-      lockPeriod: 30,
-      minDeposit: 500,
+      apyCurrent: 15.3,
+      riskLevel: 'Medium',
+      lockPeriod: 14,
+      minDeposit: 300,
       category: 'Growth',
       isFeatured: false,
       isHot: false,
-      tvl: 2800000
+      tvl: 3200000
     }
   });
 
@@ -198,14 +202,14 @@ async function main() {
       name: 'op-idrx',
       displayName: 'OP/IDRX',
       description: 'Optimism token paired with IDRX',
-      apyCurrent: 10.9,
+      apyCurrent: 11.6,
       riskLevel: 'Medium',
       lockPeriod: 7,
       minDeposit: 200,
       category: 'Balanced',
       isFeatured: false,
       isHot: false,
-      tvl: 1900000
+      tvl: 2900000
     }
   });
 

@@ -190,3 +190,78 @@ export async function getStrategyBreakdown(strategyName: string) {
     throw error;
   }
 }
+
+/**
+ * Request mockIDRX tokens from faucet
+ */
+export async function requestFaucetTokens(walletAddress: string) {
+  try {
+    // Check if wallet has requested in last 24 hours
+    const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
+
+    const lastRequest = await prisma.faucetRequest.findFirst({
+      where: {
+        walletAddress: walletAddress.toLowerCase(),
+        requestedAt: {
+          gte: twentyFourHoursAgo
+        }
+      },
+      orderBy: {
+        requestedAt: 'desc'
+      }
+    });
+
+    if (lastRequest) {
+      const cooldownRemaining = new Date(lastRequest.requestedAt.getTime() + 24 * 60 * 60 * 1000);
+      const hoursRemaining = Math.ceil((cooldownRemaining.getTime() - Date.now()) / (1000 * 60 * 60));
+
+      return {
+        success: false,
+        error: `You can request again in ${hoursRemaining} hour${hoursRemaining > 1 ? 's' : ''}`,
+        cooldownUntil: cooldownRemaining
+      };
+    }
+
+    // Generate mock transaction hash
+    const txHash = '0x' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+
+    // Create faucet request
+    const request = await prisma.faucetRequest.create({
+      data: {
+        walletAddress: walletAddress.toLowerCase(),
+        amount: 10000,
+        txHash
+      }
+    });
+
+    return {
+      success: true,
+      amount: 10000,
+      txHash: request.txHash,
+      cooldownUntil: new Date(request.requestedAt.getTime() + 24 * 60 * 60 * 1000)
+    };
+  } catch (error) {
+    logger.error('Error processing faucet request:', error);
+    throw error;
+  }
+}
+
+/**
+ * Get faucet request history for a wallet
+ */
+export async function getFaucetHistory(walletAddress: string) {
+  try {
+    return await prisma.faucetRequest.findMany({
+      where: {
+        walletAddress: walletAddress.toLowerCase()
+      },
+      orderBy: {
+        requestedAt: 'desc'
+      },
+      take: 10
+    });
+  } catch (error) {
+    logger.error('Error fetching faucet history:', error);
+    throw error;
+  }
+}

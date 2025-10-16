@@ -69,3 +69,15 @@ model StrategyProtocol {
   @@unique([strategyId, protocolId])
   @@map("strategy_protocols")
 }
+
+// Faucet Request model - tracks mockIDRX faucet requests
+model FaucetRequest {
+  id             String   @id @default(cuid())
+  walletAddress  String   // User's wallet address
+  amount         Float    @default(10000) // Amount of IDRX minted
+  txHash         String?  // Mock transaction hash (for simulation)
+  requestedAt    DateTime @default(now())
+
+  @@index([walletAddress, requestedAt])
+  @@map("faucet_requests")
+}
