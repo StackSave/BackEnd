@@ -1,0 +1,48 @@
+{
+  "name": "stacksave-backend",
+  "version": "1.0.0",
+  "description": "Backend API for StackSave - Fetches real-time staking data from Base blockchain",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio",
+    "seed": "tsx prisma/seed.ts",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "keywords": [
+    "defi",
+    "staking",
+    "base",
+    "blockchain"
+  ],
+  "author": "StackSave Team",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^6.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "winston": "^3.17.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.5",
+    "@typescript-eslint/eslint-plugin": "^8.22.1",
+    "@typescript-eslint/parser": "^8.22.1",
+    "eslint": "^9.20.0",
+    "prettier": "^3.4.2",
+    "prisma": "^6.2.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}

@@ -1,0 +1,71 @@
+// This is your Prisma schema file
+// Learn more: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Strategies/Vaults model - stores IDRX pair vaults
+model Strategy {
+  id          String   @id @default(cuid())
+  name        String   @unique // kaito-idrx, morph-idrx, eth-idrx
+  displayName String   // KAITO/IDRX, MORPH/IDRX, ETH/IDRX
+  description String?  // Strategy description
+  apyCurrent  Float    // Current APY
+  riskLevel   String   // Low, Medium, Higher
+  lockPeriod  Int      // Lock period in days
+  minDeposit  Float    // Minimum deposit in IDRX
+  category    String   @default("General") // Stable, Balanced, Aggressive
+  isFeatured  Boolean  @default(false) // Featured vault
+  isHot       Boolean  @default(false) // Trending/hot vault
+  tvl         Float    @default(0) // Total Value Locked
+
+  protocols   StrategyProtocol[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("strategies")
+}
+
+// Protocol model - stores DeFi protocol information
+model Protocol {
+  id          String   @id @default(cuid())
+  name        String   @unique // aave, moonwell, aerodrome, seamless
+  displayName String   // Aave V3, Moonwell, Aerodrome, Seamless
+  description String?  // Protocol description
+  category    String   @default("Lending") // Lending, DEX, Yield Optimizer
+  logo        String?  // Protocol logo URL
+  apy         Float    // Current APY
+  tvl         Float    // Total Value Locked in USD
+  isActive    Boolean  @default(true)
+
+  strategies  StrategyProtocol[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("protocols")
+}
+
+// Junction table for Strategy-Protocol relationship with allocation percentage
+model StrategyProtocol {
+  id         String   @id @default(cuid())
+  strategyId String
+  protocolId String
+  allocation Float    // Percentage allocation (e.g., 40 for 40%)
+
+  strategy   Strategy @relation(fields: [strategyId], references: [id], onDelete: Cascade)
+  protocol   Protocol @relation(fields: [protocolId], references: [id], onDelete: Cascade)
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([strategyId, protocolId])
+  @@map("strategy_protocols")
+}
